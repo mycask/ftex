@@ -1,0 +1,65 @@
+\documentclass{article}
+
+% Set paper size to A4 (default may be US Letter).
+%\usepackage[a6paper,left=0.25in,right=0.25in]{geometry}
+
+\ifdefined\asix
+    \usepackage[a6paper]{geometry}
+\else
+    \usepackage[a4paper]{geometry}
+\fi
+
+% Do not indent paragraphs and insert blank space between paragraphs.
+\usepackage{parskip}
+\usepackage{listings}
+
+\usepackage{textcomp}
+\usepackage[svgnames]{xcolor}
+\lstdefinestyle{plainstyle}{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true,
+}
+\lstdefinestyle{codestyle}{
+    style=plainstyle,
+    showstringspaces=false,
+    commentstyle=\color{DarkGreen},
+    keywordstyle=\color{DarkBlue},
+    identifierstyle=\color{Purple},
+    stringstyle=\color{Maroon},
+    escapeinside={<<(}{)>>},
+}
+\lstnewenvironment{fssl}{
+    \lstset{
+        language=[77]fortran,
+        style=codestyle,
+    }
+}{}
+\lstnewenvironment{plainl}{
+    \lstset{
+        style=plainstyle,
+    }
+}{}
+\newcommand{\fssi}[1]{\lstinline[language={[77]fortran},style=codestyle]{#1}}
+\newcommand{\plaini}[1]{\lstinline[style=plainstyle]{#1}}
+
+% Remove ugly border around links and color links blue.
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue]{hyperref}
+
+\newcommand{\footer}{
+    \textit{Copyright \textcopyright{} 1995-7 by Stanford University.
+            \ifdefined\asix \\ \fi
+            All rights reserved.}
+}
+
+\title{Tutorial}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\include{00_test}
+\include{01_preface}
+\include{02_whatis}
+\include{03_basics}
+\end{document}
