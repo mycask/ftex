@@ -41,19 +41,19 @@ in italics.
 
 #### Original
 
-    > ..., you have translate the program into machine readable form.
+> ..., you have translate the program into machine readable form.
 
 #### Fix
 
-    > ..., you have *to* translate the program into machine readable form.
+> ..., you have *to* translate the program into machine readable form.
 
 #### Original
 
-    > You can separate these two step by using ...
+> You can separate these two step by using ...
 
 #### Fix
 
-    > You can separate these two *steps* by using ...
+> You can separate these two *steps* by using ...
 
 
 Fortran 77 Tutorial: Errata
