@@ -5,10 +5,10 @@ pdfs: clean
 	cd tutorial_77; pdflatex -jobname=$(F77)-a4 -output-directory=.. index
 	make clean
 	make view FILE=$(F77)-a4
-	#cd tutorial_77; pdflatex -jobname=$(F77)-a6 -output-directory=.. index-a6
-	#cd tutorial_77; pdflatex -jobname=$(F77)-a6 -output-directory=.. index-a6
-	#make clean
-	#make view FILE=$(F77)-a6
+	cd tutorial_77; pdflatex -jobname=$(F77)-a6 -output-directory=.. index-a6
+	cd tutorial_77; pdflatex -jobname=$(F77)-a6 -output-directory=.. index-a6
+	make clean
+	make view FILE=$(F77)-a6
 
 view:
 	if command -v xdg-open > /dev/null; then \
