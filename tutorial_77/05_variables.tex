@@ -1,0 +1,126 @@
+\section{Variables, Types, and Declarations}
+
+\subsection*{Variable Names}
+
+Variable names in Fortran consist of 1-6 characters chosen from the
+letters \inlinecode{a-z} and the digits \inlinecode{0-9}. The first
+character must be a letter. Fortran 77 does not distinguish between
+upper and lower case, in fact, it assumes all input is upper case.
+However, nearly all Fortran 77 compilers will accept lower case. If you
+should ever encounter a Fortran 77 compiler that insists on upper case
+it is usually easy to convert the source code to all upper case.
+
+The words which make up the Fortran language are called \textit{reserved
+words} and cannot be used as names of variable. Some of the reserved
+words which we have seen so far are ``\inlinefortranss{program}'',
+``\inlinefortranss{real}'', ``\inlinefortranss{stop}'' and
+``\inlinefortranss{end}''.
+
+
+\subsection*{Types and Declarations}
+
+Every variable \textit{should} be defined in a \textit{declaration}.
+This establishes the \textit{type} of the variable. The most common
+declarations are:
+
+\begin{fortran77}
+      integer           <<list of variables>>
+      real              <<list of variables>>
+      double precision  <<list of variables>>
+      complex           <<list of variables>>
+      logical           <<list of variables>>
+      character         <<list of variables>>
+\end{fortran77}
+
+The \textit{list of variables} should consist of variable names
+separated by commas. Each variable should be declared exactly once. If a
+variable is undeclared, Fortran 77 uses a set of \textit{implicit rules}
+to establish the type. This means all variables starting with the
+letters \inlinefortranss{i}-\inlinefortranss{n} are integers and all
+others are real. Many old Fortran 77 programs uses these implicit rules,
+but \textit{you should not}! The probability of errors in your program
+grows dramatically if you do not consistently declare your variables.
+
+
+\subsection*{Integers and Floating Point Variables}
+
+Fortran 77 has only one type for integer variables. Integers are usually
+stored as 32 bits (4 bytes) variables. Therefore, all integer variables
+should take on values in the range \( [-m,m] \) where \( m \) is
+approximately \(2 \times 10^9 \).
+
+Fortran 77 has two different types for floating point variables, called
+\inlinefortranss{real} and \inlinefortranss{double precision}. While
+\inlinefortranss{real} is often adequate, some numerical calculations
+need very high precision and \\
+\inlinefortranss{double precision} should be used. Usually a
+\inlinefortranss{real} is a 4 byte variable and the
+\inlinefortranss{double precision} is 8 bytes, but this is machine
+dependent. Some non-standard Fortran versions use the syntax
+\inlinefortranss{real*8} to denote 8 byte floating point variables.
+
+
+\subsection*{The \inlinefortranss{parameter} Statement}
+
+Some constants appear many times in a program. It is then often
+desirable to define them only once, in the beginning of the program.
+This is what the \inlinefortranss{parameter} statement is for. It also
+makes programs more readable. For example, the circle area program
+should rather have been written like this:
+
+\begin{fortran77}
+      program circle
+      real r, area, pi
+      parameter (pi = 3.14159)
+ 
+c This program reads a real number r and prints
+c the area of a circle with radius r.
+ 
+      write (*,*) 'Give radius r:'
+      read  (*,*) r
+      area = pi*r*r
+      write (*,*) 'Area = ', area
+ 
+      stop
+      end
+\end{fortran77}
+
+The syntax of the \inlinefortranss{parameter} statement is
+
+\ifdefined\mini
+\begin{fortran77}
+      parameter (<<name>> = <<constant>>, <<...>> ,
+     +           <<name>> = <<constant>>)
+\end{fortran77}
+\else
+\begin{fortran77}
+      parameter (<<name>> = <<constant>>, <<...>> , <<name>> = <<constant>>)
+\end{fortran77}
+\fi
+
+The rules for the \inlinefortranss{parameter} statement are:
+
+\begin{itemize}
+    \item The \inlinefortranss{<<name>>} defined in the parameter
+        statement is not a variable but rather a constant. (You cannot
+        change its value at a later point in the program.)
+
+    \item A \inlinefortranss{<<name>>} can appear in at most one
+        \inlinefortranss{parameter} statement.
+
+    \item The \inlinefortranss{parameter} statement(s) must come before
+        the first executable statement.
+\end{itemize}
+
+Some good reasons to use the \inlinefortranss{parameter} statement are:
+
+\begin{itemize}
+    \item It helps reduce the number of typos.
+
+    \item It makes it easier to change a constant that appears many
+        times in a program.
+
+    \item It increases the readability of your program.
+\end{itemize}
+
+\footer

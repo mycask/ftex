@@ -1,0 +1,202 @@
+\section{Expressions and Assignment}
+
+\subsection*{Constants}
+
+The simplest form of an expression is a \textit{constant}. There are 6
+types of constants, corresponding to the 6 data types. Here are some
+\inlinefortranss{integer} constants:
+
+\begin{code}
+      1
+      0
+      -100
+      32767
+      +15
+\end{code}
+
+Then we have real constants:
+
+\begin{code}
+      1.0
+      -0.25
+      2.0E6
+      3.333E-1
+\end{code}
+
+The \inlinecode{E}-notation means that you should multiply the constant
+by 10 raised to the power following the ``\inlinecode{E}''. Hence,
+\inlinecode{2.0E6} is two million, while \inlinecode{3.333E-1} is
+approximately one third.
+
+For constants that are larger than the largest \inlinefortranss{real}
+allowed, or that requires high precision, \inlinefortranss{double
+precision} should be used. The notation is the same as for
+\inlinefortranss{real} constants except the ``\inlinecode{E}'' is
+replaced by a ``\inlinecode{D}''. Examples:
+
+\begin{code}
+      2.0D-1
+      1D99
+\end{code}
+
+Here \inlinecode{2.0D-1} is a \inlinefortranss{double precision}
+one-fifth, while \inlinecode{1D99} is a one followed by 99 zeros.
+
+The next type is \inlinefortranss{complex} constants. This is designated
+by a pair of constants (integer or real), separated by a comma and
+enclosed in parentheses. Examples are:
+
+\begin{code}
+      (2, -3)
+      (1., 9.9E-1)
+\end{code}
+
+The first number denotes the real part and the second the imaginary part.
+
+The fifth type is \inlinefortranss{logical} constants. These can only
+have one of two values:
+
+\begin{fortran77}
+      .TRUE.
+      .FALSE.
+\end{fortran77}
+
+Note that the dots enclosing the letters are required.
+
+The last type is \inlinefortranss{character} constants. These are most
+often used as an \textit{array} of characters, called a \textit{string}.
+These consist of an arbitrary sequence of characters enclosed in
+apostrophes (single quotes):
+
+\begin{fortran77}
+      'ABC'
+      'Anything goes!'
+      'It is a nice day'
+\end{fortran77}
+
+Strings and \inlinefortranss{character} constants are case sensitive. A
+problem arises if you want to have an apostrophe in the string itself.
+In this case, you should double the apostrophe:
+
+\begin{fortran77}
+      'It''s a nice day'
+\end{fortran77}
+
+
+\subsection*{Expressions}
+
+The simplest non-constant expressions are of the form
+
+\begin{fortran77}
+      <<operand>> <<operator>> <<operand>>
+\end{fortran77}
+
+and an example is
+
+\begin{fortran77}
+      x + y
+\end{fortran77}
+
+The result of an expression is itself an operand, hence we can nest
+expressions together like
+
+\begin{fortran77}
+      x + 2 ** y
+\end{fortran77}
+
+This raises the question of precedence: Does the last expression mean
+\inlinefortranss{x + (2*y)} or \inlinefortranss{(x+2)*y}? The precedence
+of arithmetic operators in Fortran 77 are (from highest to lowest):
+
+\begin{fortran77}
+      **   <<{exponentiation}>>
+      *,/  <<{multiplication, division}>>
+      +,-  <<{addition, subtraction}>>
+\end{fortran77}
+
+All these operators are calculated left-to-right, except the
+exponentiation operator \inlinecode{**}, which has right-to-left
+precedence. If you want to change the default evaluation order, you can
+use parentheses.
+
+The above operators are all binary operators. there is also the unary
+operator \inlinefortranss{-} for negation, which takes precedence over
+the others. Hence an expression like \inlinefortranss{-x+y} means what
+you would expect.
+
+Extreme caution must be taken when using the division operator, which
+has a quite different meaning for integers and reals. If the operands
+are both integers, an integer division is performed, otherwise a real
+arithmetic division is performed. For example, \inlinefortranss{3/2}
+equals \inlinefortranss{1}, while \inlinefortranss{3./2.} equals
+\inlinefortranss{1.5} (note the decimal points).
+
+
+\subsection*{Assignment}
+
+The assignment has the form
+
+\begin{fortran77}
+      <<variable_name>> = <<expression>>
+\end{fortran77}
+
+The interpretation is as follows: Evaluate the right hand side and
+assign the resulting value to the variable on the left. The expression
+on the right may contain other variables, but these never change value!
+For example,
+
+\begin{fortran77}
+      area = pi * r**2
+\end{fortran77}
+
+does not change the value of \inlinefortranss{pi} or
+\inlinefortranss{r}, only \inlinefortranss{area}.
+
+
+\subsection*{Type Conversion}
+
+When different data types occur in the same expression, \textit{type
+conversion} has to take place, either explicitly or implicitly. Fortran
+will do some type conversion implicitly. For example,
+
+\begin{fortran77}
+      real x
+      x = x + 1
+\end{fortran77}
+
+will convert the \inlinefortranss{integer} one to the
+\inlinefortranss{real} number one, and has the desired effect of
+incrementing \inlinefortranss{x} by one. However, in more complicated
+expressions, it is good programming practice to force the necessary type
+conversions explicitly. For numbers, the following functions are
+available:
+
+\begin{fortran77}
+      int
+      real
+      dble
+      ichar
+      char
+\end{fortran77}
+
+The first three have the obvious meaning. \inlinefortranss{ichar} takes
+a \inlinefortranss{character} and converts it to an
+\inlinefortranss{integer}, while \inlinekeyword{char} does exactly the
+opposite.
+
+Example: How to multiply two \inlinefortranss{real} variables
+\inlinefortranss{x} and \inlinefortranss{y} using
+\inlinefortranss{double precision} and store the result in the
+\inlinefortranss{double precision} variable \inlinefortranss{w}:
+
+\begin{fortran77}
+      w = dble(x)*dble(y)
+\end{fortran77}
+
+Note that this is different from
+
+\begin{fortran77}
+      w = dble(x*y)
+\end{fortran77}
+
+\footer

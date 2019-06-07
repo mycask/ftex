@@ -1,9 +1,7 @@
 \documentclass{article}
 
-% Set paper size to A4 (default may be US Letter).
-%\usepackage[a6paper,left=0.25in,right=0.25in]{geometry}
-
-\ifdefined\asix
+% Set different paper sizes for small and large displays.
+\ifdefined\mini
     \usepackage[a6paper]{geometry}
 \else
     \usepackage[a4paper]{geometry}
@@ -12,54 +10,128 @@
 % Do not indent paragraphs and insert blank space between paragraphs.
 \usepackage{parskip}
 \usepackage{listings}
-
 \usepackage{textcomp}
 \usepackage[svgnames]{xcolor}
+
 \lstdefinestyle{plainstyle}{
     basicstyle=\ttfamily,
     columns=fullflexible,
     keepspaces=true,
     upquote=true,
+    moredelim=*[is][\itshape]{<<}{>>},
 }
-\lstdefinestyle{codestyle}{
-    style=plainstyle,
+\lstdefinestyle{ministyle}{
+    % \normalfont lets 48 columns to fit in a6paper.
+    % \small lets 53 columns to fit in a6paper.
+    % \footnotesize lets 59 columns to fit in a6paper.
+    % \scriptsize lets 68 columns to fit in a6paper.
+    % \tiny lets 95 columns to fit in a6paper.
+    basicstyle=\ifdefined\mini \small \fi \ttfamily,
+}
+\lstdefinestyle{xministyle}{
+    basicstyle=\ifdefined\mini \footnotesize \fi \ttfamily,
+}
+\lstdefinestyle{colorstyle}{
     showstringspaces=false,
     commentstyle=\color{DarkGreen},
     keywordstyle=\color{DarkBlue},
     identifierstyle=\color{Purple},
     stringstyle=\color{Maroon},
-    escapeinside={<<(}{)>>},
 }
-\lstnewenvironment{fssl}{
-    \lstset{
-        language=[77]fortran,
-        style=codestyle,
-    }
-}{}
-\lstnewenvironment{plainl}{
+\lstnewenvironment{code}{
     \lstset{
         style=plainstyle,
+        style=ministyle,
     }
 }{}
-\newcommand{\fssi}[1]{\lstinline[language={[77]fortran},style=codestyle]{#1}}
-\newcommand{\plaini}[1]{\lstinline[style=plainstyle]{#1}}
+\lstnewenvironment{xminicode}{
+    \lstset{
+        style=plainstyle,
+        style=xministyle,
+    }
+}{}
+\lstnewenvironment{fortran77}{
+    \lstset{
+        language=[77]fortran,
+        style=plainstyle,
+        style=ministyle,
+        style=colorstyle,
+    }
+}{}
+
+\newcommand{\inlinefortranss}[1]{%
+    \lstinline[
+        language={[77]fortran},
+        style=plainstyle,
+        style=colorstyle,
+    ]{#1}%
+}
+
+\newcommand{\inlinekeyword}[1]{%
+    \lstinline[
+        language={[77]fortran},
+        style=plainstyle,
+        style=colorstyle,
+        commentstyle=\color{DarkBlue},
+    ]{#1}%
+}
+
+\newcommand{\inlineidentifier}[1]{%
+    \lstinline[
+        language={[77]fortran},
+        style=plainstyle,
+        style=colorstyle,
+        commentstyle=\color{Purple},
+    ]{#1}%
+}
+
+\newcommand{\inlinecode}[1]{%
+    \lstinline[style=plainstyle]{#1}%
+}
 
 % Remove ugly border around links and color links blue.
 \usepackage[colorlinks=true,linkcolor=black,urlcolor=blue]{hyperref}
 
 \newcommand{\footer}{
+    \medskip
     \textit{Copyright \textcopyright{} 1995-7 by Stanford University.
-            \ifdefined\asix \\ \fi
-            All rights reserved.}
+            \ifdefined\mini\\*\fi All rights reserved.}
 }
 
-\title{Tutorial}
+\title{Fortran 77 Tutorial}
+\author{
+    Erik Bowman \\
+    Sarah T. Whitelock \\
+    Paul H. Hargrove \\
+}
+\date{}
 
 \begin{document}
+
 \maketitle
-\tableofcontents
+\begin{center}
+\small
+Typesetting in \LaTeX{} by Susam Pal
+
+Version 0.1.0 (2019-06-07)
+\end{center}
+
+\ifdefined\mini
+    \pagebreak
+\else
+    \bigskip
+\fi
+
+{
+    \ifdefined\mini\small\fi
+    \tableofcontents
+}
 \include{00_test}
 \include{01_preface}
 \include{02_whatis}
 \include{03_basics}
+\include{04_unix}
+\include{05_variables}
+\include{06_expressions}
+
 \end{document}

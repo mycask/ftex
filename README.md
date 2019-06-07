@@ -6,12 +6,20 @@ Fortran 90 converted to LaTeX source code and then compiled to PDFs.
 Here are the URLs of the original tutorials that were published as HTML
 pages:
 
-  - https://web.stanford.edu/class/me200c/tutorial_77/
-  - https://web.stanford.edu/class/me200c/tutorial_90/
+  - <https://web.stanford.edu/class/me200c/tutorial_77/>
+  - <https://web.stanford.edu/class/me200c/tutorial_90/>
 
 
-Changes
+Content
 -------
+
+* [Differences from the Originals](#differences-from-the-originals)
+* [Fortran 77 Tutorial: Fixes](#fotran-77-tutorial-fixes)
+* [Fortran 77 Tutorial: Errata](#fotran-77-tutorial-errata)
+
+
+Differences from the Originals
+------------------------------
 
 The LaTeX source code has been written in such a manner that the content
 of the compiled PDFs is as close to the original content as possible.
@@ -27,8 +35,10 @@ changes are present:
     monospace font. The original tutorials use either regular or italic
     font.
   - Fix typos.
-  - Render mathematical expressions in the text (not code) using LaTeX
-    math mode.
+  - Render mathematical expressions in the text (not the ones in the
+    code examples) using LaTeX math mode.
+  - Slightly more vertical space the copyright notice at the bottom of
+    every section and the text above the copyright notice.
 
 
 Fortran 77 Tutorial: Fixes
@@ -56,6 +66,14 @@ in italics.
 > You can separate these two *steps* by using ...
 
 
+### Section 5: Variables, Types, and Declarations
+
+The entry for `double precision` in the original tutorial is misaligned.
+It has been fixed in the LaTeX and PDF versions of the tutorial in this
+project.
+
+
+
 Fortran 77 Tutorial: Errata
 ---------------------------
 
@@ -74,7 +92,6 @@ The tutorial mentions,
 
 In reality, these keywords can be used as variable names. Here is an
 example program:
-
 
 ```fortran
       program variables

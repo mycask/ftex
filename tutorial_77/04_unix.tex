@@ -1,0 +1,101 @@
+\section{How to Use Fortran on the Unix Computers at Stanford}
+
+\subsection*{Practical Details}
+
+For the course ME390 you will need an account on the \textit{leland}
+computers. If you don't have one, you should go over to the consultants'
+desk on the second floor of Sweet Hall and open an account ASAP.
+
+In this class, we will be using Fortran under the Unix operating system.
+If you have no previous experience with Unix, you will have to learn the
+basics on your own. The consultants at Sweet Hall have some brochures
+that can be useful. There is also a class taught in the CS department
+that gives an introduction to Unix.
+
+You can use any Unix workstation that has a Fortran 77 compiler. We
+recommend that you use one of the Sun workstations, so you should log
+onto one of the ``elaine'', ``epic'', ``adelbert'' or ``saga'' machines.
+
+
+\subsection*{Source Code, Object Code, Compiling, and Linking}
+
+A Fortran program consists of plain text that follows certain rules
+(syntax). This is called the \textit{source code}. You need to use an
+\textit{editor} to write (edit) the source code. The most common editors
+in Unix are \inlinecode{emacs} and \inlinecode{vi}, but these can be a
+bit tricky for novice users. You may want to use a simpler editor, like
+\inlinecode{xedit} which runs under X-windows.
+
+When you have written a Fortran program, you should save it in a file
+that has the extension \inlinecode{.f} or \inlinecode{.for}. Before you
+can execute the program, you have to translate the program into machine
+readable form. This is done by a special program called a
+\textit{compiler}. The Fortran 77 compilers are usually called
+\inlinecode{f77}. The output from the compilation is given the somewhat
+cryptic name \inlinecode{a.out} by default, but you can choose another
+name if you wish. To run the program, simply type the name of the
+executable file, for example \inlinecode{a.out}. (This explanation is a
+bit oversimplified. Really the compiler translates source code into
+\textit{object code} and the linker/loader makes this into an
+\textit{executable}.)
+
+
+\subsubsection*{Examples}
+
+In the class directory there is a small Fortran program called
+\inlinecode{circle.f}. You can compile and run it by following these
+steps:
+
+\begin{code}
+    cp /usr/class/me390/circle*.f .
+    f77 circle.f
+    a.out
+\end{code}
+
+(Note that there are several dots (periods) there which can be easy to
+miss!) If you need to have several executables at the same time, it is a
+good idea to give the executables descriptive names. This can be
+accomplished using the \inlinecode{-o} option. For example,
+
+\begin{code}
+    f77 circle.f -o circle.out
+\end{code}
+
+will compile the file \inlinecode{circle.f} and save the executable in
+the file \inlinecode{circle.out}. Please note that object codes and
+executables take a lot of disk space, so you should delete them when you
+are not using them. (The remove command in Unix is \inlinecode{rm}.)
+
+In the previous examples, we have not distinguished between
+\textit{compiling} and \textit{linking}. These are two different
+processes but the Fortran compiler performs them both, so the user
+usually does not need to know about it. But in the next example we will
+use \textit{two} source code files.
+
+\begin{code}
+    f77 circle1.f circle2.f
+\end{code}
+
+This will generate \textit{three} files, the two object code files
+\inlinecode{circle1.o} and \inlinecode{circle2.o}, plus the executable
+file \inlinecode{a.out}. What really happened here, is that the Fortran
+compiler first compiled each of the source code files into object files
+(ending in \inlinecode{.o}) and then linked the two object files
+together into the executable \inlinecode{a.out}. You can separate these
+two steps by using the \inlinecode{-c} option to tell the compiler to
+only compile the source files:
+
+\begin{code}
+    f77 -c circle1.f circle2.f
+    f77 circle1.o circle2.o
+\end{code}
+
+Compiling separate files like this may be useful if there are many files
+and only a few of them needs to be recompiled. In Unix there is a useful
+command called \inlinecode{make} which is usually used to handle large
+software packages with many source files. These packages come with a
+\inlinecode{makefile} and all the user has to do is to type
+\inlinecode{make}. Writing makefiles is a bit complicated so we will not
+discuss this in this tutorial.
+
+\footer
