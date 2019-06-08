@@ -98,6 +98,13 @@
             \ifdefined\mini\\*\fi All rights reserved.}
 }
 
+\newcommand{\newsection}[1]{
+    \input{#1}
+    
+    \footer
+    \newpage
+}
+
 \title{Fortran 77 Tutorial}
 \author{
     Erik Bowman \\
@@ -108,30 +115,34 @@
 
 \begin{document}
 
+% Title page.
+\pagenumbering{gobble}
 \maketitle
+\thispagestyle{empty}
 \begin{center}
 \small
-Typesetting in \LaTeX{} by Susam Pal
+Typeset in \LaTeX{} by Susam Pal
 
 Version 0.1.0 (2019-06-07)
 \end{center}
+\newpage
 
-\ifdefined\mini
-    \pagebreak
-\else
-    \bigskip
-\fi
-
+% Contents page.
 {
     \ifdefined\mini\small\fi
     \tableofcontents
 }
-\include{00_test}
-\include{01_preface}
-\include{02_whatis}
-\include{03_basics}
-\include{04_unix}
-\include{05_variables}
-\include{06_expressions}
+\newpage
+
+% Sections.
+\newsection{00_test}
+\pagenumbering{arabic}
+\newsection{01_preface}
+\newsection{02_whatis}
+\newsection{03_basics}
+\newsection{04_unix}
+\newsection{05_variables}
+\newsection{06_expressions}
+\newsection{07_logical}
 
 \end{document}

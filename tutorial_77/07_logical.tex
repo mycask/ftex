@@ -1,0 +1,47 @@
+\section{Logical Expressions}
+
+Logical expressions can only have the value \inlinefortranss{.TRUE.} or
+\inlinefortranss{.FALSE.}. A logical expression can be formed by
+comparing arithmetic expressions using the following \textit{relational
+operators}:
+
+\begin{fortran77}
+      .LT.  <<meaning <>>
+      .LE.          <<<=>>
+      .GT.          <<>>>
+      .GE.          <<>=>>
+      .EQ.          <<=>>
+      .NE.          <</=>>
+\end{fortran77}
+
+So you \textit{cannot} use symbols like \inlinefortranss{<} or
+\inlinefortranss{=} for comparison in Fortran 77, but you have to use
+the correct two-letter abbreviation enclosed by dots!
+
+Logical expressions can be combined by the \textit{logical operators}
+\inlinefortranss{.AND.}, \inlinefortranss{.OR.}, and
+\inlinefortranss{.NOT.} which have the obvious meaning.
+
+
+\subsection*{Logical Variables and Assignment}
+
+Truth values can be stored in \textit{logical variables}. The assignment
+is analogous to the arithmetic assignment. Example:
+
+\begin{fortran77}
+      logical a, b
+      a = .TRUE.
+      b = a .AND. 3 .LT. 5/2
+\end{fortran77}
+
+The order of precedence is important, as the last example shows. The
+rule is that arithmetic expressions are evaluated first, then relational
+operators, and finally logical operators. Hence \inlinefortranss{b} will
+be assigned \inlinefortranss{.FALSE.} in the example above. Among the
+logical operators the precedence (in the absence of parenthesis) is that
+\inlinefortranss{.NOT.} is done first, then \inlinefortranss{.AND.},
+then \inlinefortranss{.OR.} is done last.
+
+Logical variables are seldom used in Fortran. But logical expressions
+are frequently used in conditional statements like the
+\inlinefortranss{if} statement.

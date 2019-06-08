@@ -42,7 +42,7 @@ replaced by a ``\inlinecode{D}''. Examples:
 Here \inlinecode{2.0D-1} is a \inlinefortranss{double precision}
 one-fifth, while \inlinecode{1D99} is a one followed by 99 zeros.
 
-The next type is \inlinefortranss{complex} constants. This is designated
+The next type is \inlinekeyword{complex} constants. This is designated
 by a pair of constants (integer or real), separated by a comma and
 enclosed in parentheses. Examples are:
 
@@ -63,7 +63,7 @@ have one of two values:
 
 Note that the dots enclosing the letters are required.
 
-The last type is \inlinefortranss{character} constants. These are most
+The last type is \inlinekeyword{character} constants. These are most
 often used as an \textit{array} of characters, called a \textit{string}.
 These consist of an arbitrary sequence of characters enclosed in
 apostrophes (single quotes):
@@ -74,7 +74,7 @@ apostrophes (single quotes):
       'It is a nice day'
 \end{fortran77}
 
-Strings and \inlinefortranss{character} constants are case sensitive. A
+Strings and \inlinekeyword{character} constants are case sensitive. A
 problem arises if you want to have an apostrophe in the string itself.
 In this case, you should double the apostrophe:
 
@@ -180,7 +180,7 @@ available:
 \end{fortran77}
 
 The first three have the obvious meaning. \inlinefortranss{ichar} takes
-a \inlinefortranss{character} and converts it to an
+a \inlinekeyword{character} and converts it to an
 \inlinefortranss{integer}, while \inlinekeyword{char} does exactly the
 opposite.
 
@@ -198,5 +198,3 @@ Note that this is different from
 \begin{fortran77}
       w = dble(x*y)
 \end{fortran77}
-
-\footer

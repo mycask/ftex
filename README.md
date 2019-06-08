@@ -2,12 +2,28 @@ Stanford Fortran Tutorials
 ==========================
 
 This project contains the famous Stanford tutorials on Fortran 77 and
-Fortran 90 converted to LaTeX source code and then compiled to PDFs.
+Fortran 90 converted to LaTeX source code and then compiled to PDFs:
+
+  - [![Download Fortran 77 Tutorial (A4 PDF)][F77_A4_IMG]][F77_A4_PDF]
+  - [![Download Fortran 77 Tutorial (A6 PDF)][F77_A6_IMG]][F77_A6_PDF]
+  - [![Download Fortran 90 Tutorial (A4 PDF)][F90_A4_IMG]][F90_A4_PDF]
+  - [![Download Fortran 90 Tutorial (A6 PDF)][F90_A6_IMG]][F90_A6_PDF]
+
 Here are the URLs of the original tutorials that were published as HTML
 pages:
 
   - <https://web.stanford.edu/class/me200c/tutorial_77/>
   - <https://web.stanford.edu/class/me200c/tutorial_90/>
+
+[F77_A4_IMG]: https://img.shields.io/badge/download-Fortran%2077%20Tutorial%20(A4%20PDF)-brightgreen.svg 
+[F77_A6_IMG]: https://img.shields.io/badge/download-Fortran%2077%20Tutorial%20(A6%20PDF)-brightgreen.svg 
+[F90_A4_IMG]: https://img.shields.io/badge/download-Fortran%2090%20Tutorial%20(A4%20PDF)-brightgreen.svg 
+[F90_A6_IMG]: https://img.shields.io/badge/download-Fortran%2090%20Tutorial%20(A6%20PDF)-brightgreen.svg 
+
+[F77_A4_PDF]: https://github.com/susam/stanford-fortran-tutorials/releases/download/0.1.0/stanford-fortran-77-tutorial-a4.pdf
+[F77_A6_PDF]: https://github.com/susam/stanford-fortran-tutorials/releases/download/0.1.0/stanford-fortran-77-tutorial-a6.pdf
+[F90_A4_PDF]: https://github.com/susam/stanford-fortran-tutorials/releases/download/0.1.0/stanford-fortran-90-tutorial-a4.pdf
+[F90_A6_PDF]: https://github.com/susam/stanford-fortran-tutorials/releases/download/0.1.0/stanford-fortran-90-tutorial-a6.pdf
 
 
 Content
@@ -15,7 +31,6 @@ Content
 
 * [Differences from the Originals](#differences-from-the-originals)
 * [Fortran 77 Tutorial: Fixes](#fotran-77-tutorial-fixes)
-* [Fortran 77 Tutorial: Errata](#fotran-77-tutorial-errata)
 
 
 Differences from the Originals
@@ -49,65 +64,83 @@ in italics.
 
 ### Section 4: How to Use Fortran on the Unix Computers at Stanford
 
-#### Original
+  - Original:
 
-> ..., you have translate the program into machine readable form.
+    > ..., you have translate the program into machine readable form.
 
-#### Fix
+    Fix:
 
-> ..., you have *to* translate the program into machine readable form.
+    > ..., you have *to* translate the program into machine readable form.
 
-#### Original
+  - Original:
 
-> You can separate these two step by using ...
+    > You can separate these two step by using ...
 
-#### Fix
+    Fix:
 
-> You can separate these two *steps* by using ...
-
-
-### Section 5: Variables, Types, and Declarations
-
-The entry for `double precision` in the original tutorial is misaligned.
-It has been fixed in the LaTeX and PDF versions of the tutorial in this
-project.
-
-
-
-Fortran 77 Tutorial: Errata
----------------------------
-
-The following errors found in the original tutorial occur intact in
-the LaTeX and PDF version of the tutorial in this project. Here is a
-list of the errors:
+    > You can separate these two *steps* by using ...
 
 
 ### Section 5: Variables, Types, and Declarations
 
-The tutorial mentions,
+  - The original tutorial contains this incorrect paragraph:
 
-> The words which make up the Fortran language are called reserved words
-> and cannot be used as names of variable. Some of the reserved words
-> which we have seen so far are "program", "real", "stop" and "end".
+    > The words which make up the Fortran language are called reserved
+    > words and cannot be used as names of variable. Some of the
+    > reserved words which we have seen so far are "program", "real",
+    > "stop" and "end".
 
-In reality, these keywords can be used as variable names. Here is an
-example program:
+    In reality, these keywords can be used as variable names. Here is an
+    example program:
 
-```fortran
-      program variables
+    ```fortran
+          program variables
 
-      integer program
-      integer real
-      integer stop
-      integer end
+          integer program
+          integer real
+          integer stop
+          integer end
 
-      program = 10
-      real = 20
-      stop = 30
-      end = 40
+          program = 10
+          real = 20
+          stop = 30
+          end = 40
 
-      write (*,*) program, real, stop, end
+          write (*,*) program, real, stop, end
 
-      stop
-      end
-```
+          stop
+          end
+    ```
+
+    This incorrect paragraph has been removed in this project. This
+    incorrect paragraph is missing from this URL as well:
+    <http://www.tat.physik.uni-tuebingen.de/~kley/lehre/ftn77/tutorial/variables.html>.
+    The tutorial in this URL appears to be based on an older version of
+    the original tutorial from 1995 (as opposed to the latest version of
+    the original tutorial from 1997).
+
+  - The entry for `double precision` in the original tutorial is
+    misaligned. It has been fixed in this project.
+
+
+### Section 7: Logical Expressions
+
+  - In the original tutorial, The list of relational operators is
+    misaligned and contains stray double-quotes due to incorrect HTML.
+    This has been fixed in this project.
+
+  - The original tutorial displays this incomplete sentence due to
+    incorrect HTML in its source code:
+
+    > So you *cannot* use symbols like
+
+    This has been fixed to:
+
+    > So you cannot use symbols like `<` or `=` for comparison in Fortran
+    > 77, but you have to use the correct two-letter abbreviation enclosed
+    > by dots!
+
+    This fix was also found at
+    <http://www.tat.physik.uni-tuebingen.de/~kley/lehre/ftn77/tutorial/logical.html>.
+    which appears to be based on an older version of the original
+    tutorial from 1995.
