@@ -15,10 +15,10 @@ pages:
   - <https://web.stanford.edu/class/me200c/tutorial_77/>
   - <https://web.stanford.edu/class/me200c/tutorial_90/>
 
-[F77_A4_IMG]: https://img.shields.io/badge/download-Fortran%2077%20Tutorial%20(A4%20PDF)-brightgreen.svg 
-[F77_A6_IMG]: https://img.shields.io/badge/download-Fortran%2077%20Tutorial%20(A6%20PDF)-brightgreen.svg 
-[F90_A4_IMG]: https://img.shields.io/badge/download-Fortran%2090%20Tutorial%20(A4%20PDF)-brightgreen.svg 
-[F90_A6_IMG]: https://img.shields.io/badge/download-Fortran%2090%20Tutorial%20(A6%20PDF)-brightgreen.svg 
+[F77_A4_IMG]: https://img.shields.io/badge/download-Fortran%2077%20Tutorial%20(A4%20PDF)-brightgreen.svg
+[F77_A6_IMG]: https://img.shields.io/badge/download-Fortran%2077%20Tutorial%20(A6%20PDF)-brightgreen.svg
+[F90_A4_IMG]: https://img.shields.io/badge/download-Fortran%2090%20Tutorial%20(A4%20PDF)-brightgreen.svg
+[F90_A6_IMG]: https://img.shields.io/badge/download-Fortran%2090%20Tutorial%20(A6%20PDF)-brightgreen.svg
 
 [F77_A4_PDF]: https://github.com/susam/stanford-fortran-tutorials/releases/download/0.1.0/stanford-fortran-77-tutorial-a4.pdf
 [F77_A6_PDF]: https://github.com/susam/stanford-fortran-tutorials/releases/download/0.1.0/stanford-fortran-77-tutorial-a6.pdf
@@ -59,26 +59,38 @@ changes are present:
 Fortran 77 Tutorial: Fixes
 --------------------------
 
-This section documents all fixes for typos. The fixed text is emphasized
-in italics.
+### Section 3: Fotran 77 Basics
+
+  - In the original tutorial, in the "Continuation" subsection, there is
+    a comment line that begins with `c23456789`. The text within
+    parentheses on the same line is italicized as if it were not part of
+    the comment.
+
+    In this project, the text within parentheses is not italicized and
+    it is syntax highlighted like a comment.
+
 
 ### Section 4: How to Use Fortran on the Unix Computers at Stanford
 
-  - Original:
+  - The original tutorial contains this phrase:
 
-    > ..., you have translate the program into machine readable form.
+    > you have translate the program into machine readable form
 
-    Fix:
+    In this project, this phrase has been fixed to:
 
-    > ..., you have *to* translate the program into machine readable form.
+    > you have *to* translate the program into machine readable form
 
-  - Original:
+    The fix is emphasized in italics above.
 
-    > You can separate these two step by using ...
+  - The original tutorial contains this phrase:
 
-    Fix:
+    > You can separate these two step by using
 
-    > You can separate these two *steps* by using ...
+    In this project, this phrase has been fixed to:
+
+    > You can separate these two *steps* by using
+
+    The fix is emphasized in italics above.
 
 
 ### Section 5: Variables, Types, and Declarations
@@ -125,9 +137,14 @@ in italics.
 
 ### Section 7: Logical Expressions
 
-  - In the original tutorial, The list of relational operators is
+  - In the original tutorial, the list of relational operators is
     misaligned and contains stray double-quotes due to incorrect HTML.
     This has been fixed in this project.
+
+  - In the original tutorial, in the list of relational operators, the
+    description for each operator is not italicized. In this project,
+    they are italicized to keep it consistent with the list of types in
+    section 5.
 
   - The original tutorial displays this incomplete sentence due to
     incorrect HTML in its source code:
@@ -144,3 +161,51 @@ in italics.
     <http://www.tat.physik.uni-tuebingen.de/~kley/lehre/ftn77/tutorial/logical.html>.
     which appears to be based on an older version of the original
     tutorial from 1995.
+
+  - The original tutorial contains this sentence:
+
+    > Logical expressions can be combined by the *logical operators*
+    > `.AND.` `.OR.` `.NOT.` which have the obvious meaning.
+
+    In this project, commas and conjunction have been added between the
+    logical operator tokens like this:
+
+    > Logical expressions can be combined by the *logical operators*
+    > `.AND.`, `.OR.`, and `.NOT.` which have the obvious meaning.
+
+
+### Section 8: The `if` Statements
+
+  - The last example in this section appears incomplete due to incorrect
+    HTML in its source code. Further, the paragraph following it appears
+    in monospace font as part of the source code. This has been fixed in
+    this project. This fix was also found at
+    <http://www.tat.physik.uni-tuebingen.de/~kley/lehre/ftn77/tutorial/logical.html>.
+    which appears to be based on an older version of the original
+    tutorial from 1995.
+
+
+Fortran 90 Tutorial: Fixes
+--------------------------
+
+### Table of Contents
+
+  - In the original tutorial, the table of contents in the index page
+    contains the copyright notice in the ordered list. As a result, the
+    copyright notice is a list item and appears indented like other list
+    items.
+
+    In this project, the copyright notice has been moved out of the
+    ordered list.
+
+### Section 4: How to Use Fortran on the Unix Computers at Stanford
+
+  - The original tutorial contains this phrase:
+
+    > If you think you're program should compile
+
+    In this project, this phrase has been fixed to:
+
+    > If you think *your* program should compile
+
+    The fix is emphasized in italics above.

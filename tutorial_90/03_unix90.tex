@@ -1,0 +1,55 @@
+\section{How to Use Fortran 90 on the Unix Computers at Stanford}
+
+\subsection*{Practical Details}
+
+Unfortunately, the Fortran 90 compiler that resides on the Sun computers
+in the leland system is unreliable. However, there is no alternative at
+this time. If you think your program should compile but it won't, then
+it might not be your fault. See the instructor if you think the compiler
+is misbehaving.
+
+
+\subsection*{Compiling, Linking, and Executing}
+
+In virtually the same manner in which we compiled our Fortran 77
+routines, we can process our Fortran 90 programs. To compile and link a
+Fortran 90 source code with the name \inlinecode{main.f90}, simply type
+
+\begin{code}
+f90 main.f90
+\end{code}
+
+This will create an executable file called \inlinecode{a.out}.
+
+Fortran 90 programs which make use of the free format form (to be
+explained in the next section) must have an extension \inlinecode{.f90}.
+
+Just as with the Fortran 77 compiler, we are able to specify the name of
+our executable file with the Fortran90 compiler by specifying the
+\inlinecode{-o} option:
+
+\begin{code}
+f90 main.f90 -o main.out
+\end{code}
+
+This will create an executable file called \inlinecode{main.out}.
+
+Similarly, we can link to a Fortran 90 compiled library (such as the
+BLAS/LAPACK library in the class account) by
+
+\begin{code}
+f90 main.f90 -L/usr/class/me390/lib -lmy_lib90
+\end{code}
+
+This will link your program \inlinecode{main.f90} to the compiled
+library called \inlinecode{libmy_lib90.a} which resides on the class
+account in the directory \ifmini{\\}{}\inlinecode{/usr/class/me390/lib}.
+You may copy this library file to your own account if you wish. However,
+the file is rather large and may cause you to exceed your disk quota on
+the leland system. A better approach would be to simply compile your
+programs requiring the BLAS/LAPACK library using the command given
+above.
+
+Note: the library \inlinecode{libmy_lib90.a} MUST have been created
+using the Fortran 90 compiler. Attempts to link a Fortran 90 program to
+a Fortran 77 library will fail.

@@ -1,0 +1,178 @@
+\documentclass{article}
+
+
+% PACKAGES
+% ========
+
+\newcommand{\ifmini}[2]{\ifdefined\mini#1\else#2\fi}
+
+% Set different paper sizes for small and large displays.
+\usepackage[\ifmini{a6}{a4}paper]{geometry}
+
+% Do not indent paragraphs and insert blank space between paragraphs.
+\usepackage{parskip}
+
+% Remove ugly border around links and color links blue.
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue]{hyperref}
+
+% To enter syntax-highlighted code blocks.
+\usepackage{listings}
+
+% Commands like \textasciigrave, \textquotesingle, etc. are required by
+% listings when \lstset{upquote=true} is used. They are defined in
+% textcomp.sty.
+\usepackage{textcomp}
+
+% To define colors for syntax highlighting.
+\usepackage[svgnames]{xcolor}
+
+
+% CODE STYLES
+% ===========
+
+% Base style for code.
+\lstdefinestyle{plainstyle}{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true,
+    moredelim=[is][\itshape]{<<}{>>},
+}
+
+% Mini code font in small size output.
+\lstdefinestyle{ministyle}{
+    % \normalfont lets 48 columns to fit in a6paper.
+    % \small lets 53 columns to fit in a6paper.
+    % \footnotesize lets 59 columns to fit in a6paper.
+    % \scriptsize lets 68 columns to fit in a6paper.
+    % \tiny lets 95 columns to fit in a6paper.
+    basicstyle=\ifmini{\small}{}\ttfamily,
+}
+
+% Extra-mini code font in small size output.
+\lstdefinestyle{xministyle}{
+    basicstyle=\ifmini{\footnotesize}{}\ttfamily,
+}
+
+% Syntax highlighting colors.
+\lstdefinestyle{colorstyle}{
+    showstringspaces=false,
+    commentstyle=\color{DarkGreen},
+    keywordstyle=\color{DarkBlue},
+    identifierstyle=\color{Purple},
+    stringstyle=\color{Maroon},
+}
+
+% Code without colors. Use mini font for mini size output.
+\lstnewenvironment{code}{
+    \lstset{
+        style=plainstyle,
+        style=ministyle,
+    }
+}{}
+
+% Code without colors. Use extra-mini font for mini size output.
+\lstnewenvironment{xminicode}{
+    \lstset{
+        style=plainstyle,
+        style=xministyle,
+    }
+}{}
+
+% Fortran 77 syntax highlighting. Use mini font for mini size output.
+\lstnewenvironment{fortran77}{
+    \lstset{
+        language=[77]fortran,
+        style=plainstyle,
+        style=ministyle,
+        style=colorstyle,
+    }
+}{}
+
+% Fortran 90 syntax highlighting. Use mini font for mini size output.
+\lstnewenvironment{fortran90}{
+    \lstset{
+        language=[90]fortran,
+        style=plainstyle,
+        style=ministyle,
+        style=colorstyle,
+    }
+}{}
+
+% Inline code without colors.
+\newcommand{\inlinecode}[1]{%
+    \lstinline[style=plainstyle]{#1}%
+}
+
+% Inline Fortran 77 code with colors.
+\newcommand{\inlinefortranss}[1]{%
+    \lstinline[
+        language={[77]fortran},
+        style=plainstyle,
+        style=colorstyle,
+    ]{#1}%
+}
+
+% Inline Fortran 90 code with colors.
+\newcommand{\inlinefortrann}[1]{%
+    \lstinline[
+        language={[90]fortran},
+        style=plainstyle,
+        style=colorstyle,
+    ]{#1}%
+}
+
+% Inline keywords. Use this when the inline code would be syntax
+% highlighted as comments otherwise, e.g., 'complex', 'character', etc.,
+% or to highlight keywords from another language such as C or Pascal.
+\newcommand{\inlinekeyword}[1]{%
+    \lstinline[
+        style=plainstyle,
+        basicstyle=\ttfamily\color{DarkBlue},
+    ]{#1}%
+}
+
+% Copyright notice at the end of every section.
+\newcommand{\copyrightnotice}{
+    \medskip
+    \textit{Copyright \textcopyright{} \published{} by Stanford University.
+            \ifmini{\\*}{}All rights reserved.}
+}
+
+% Add section from file.
+\newcommand{\newsection}[1]{
+    \input{#1}
+
+    \copyrightnotice
+    \newpage
+}
+
+% Title page values.
+\title{\thetitle}
+\author{\theauthors}
+\date{}
+
+% Change heading of table of contents.
+\renewcommand{\contentsname}{\contentsheading}
+
+\begin{document}
+
+% Title page.
+\pagenumbering{gobble}
+\maketitle
+\begin{center}
+\small
+Typeset in \LaTeX{} by Susam Pal
+
+Version \version{} (\updated)
+\end{center}
+\newpage
+
+% ToC page.
+{
+    \ifmini{\small}{}
+    \tableofcontents
+}
+\copyrightnotice
+\newpage
+\pagenumbering{arabic}

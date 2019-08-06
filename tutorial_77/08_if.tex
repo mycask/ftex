@@ -1,0 +1,71 @@
+\section{The \texorpdfstring{\inlinefortranss{if}}{if} Statements}
+
+An important part of any programming language are the
+\textit{conditional statements}. The most common such statement in
+Fortran is the \inlinefortranss{if} statement, which actually has
+several forms. The simplest one is the logical \inlinefortranss{if}
+statement:
+
+\begin{fortran77}
+      if (<<logical expression>>) <<executable statement>>
+\end{fortran77}
+
+This has to be written on one line. This example finds the absolute
+value of \inlinefortranss{x}:
+
+\begin{fortran77}
+      if (x .LT. 0) x = -x
+\end{fortran77}
+
+If more than one statement should be executed inside the
+\inlinefortranss{if}, then the following syntax should be used:
+
+\begin{fortran77}
+      if (<<logical expression>>) then
+         <<statements>>
+      endif
+\end{fortran77}
+
+The most general form of the \inlinefortranss{if} statement has the
+following form:
+
+\begin{fortran77}
+      if (<<logical expression>>) then
+         <<statements>>
+      elseif (<<logical expression>>) then
+         <<statements>>
+       :
+       :
+      else
+         <<statements>>
+      endif
+\end{fortran77}
+
+The execution flow is from top to bottom. The conditional expressions
+are evaluated in sequence until one is found to be true. Then the
+associated statements are executed and the control resumes after the
+\inlinefortranss{endif}.
+
+
+\subsection*{Nested \inlinefortranss{if} statements}
+
+\inlinefortranss{if} statements can be nested in several levels. To
+ensure readability, it is important to use proper indentation. Here is
+an example:
+
+\begin{fortran77}
+      if (x .GT. 0) then
+         if (x .GE. y) then
+            write(*,*) 'x is positive and x >= y'
+         else
+            write(*,*) 'x is positive but x < y'
+         endif
+      elseif (x .LT. 0) then
+         write(*,*) 'x is negative'
+      else
+         write(*,*) 'x is zero'
+      endif
+\end{fortran77}
+
+You should avoid nesting many levels of \inlinefortranss{if} statements
+since things get hard to follow.

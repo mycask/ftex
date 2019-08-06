@@ -1,0 +1,54 @@
+\section{Main Features of Fortran 90}
+
+Fortran 90 is a new programming language intended for use in scientific
+and engineering applications. It is a language that has developed by the
+introduction of features that are new to Fortran, but are based on
+experience of other languages (like C and Matlab for instance). Fortran
+90 is very different from earlier versions of Fortran, yet it is
+completely backwards compatible with Fortran 77.
+
+The features of Fortran 90 are far too numerous to mention in entirety
+here, but some of the key features are outlined below:
+
+\newcommand{\descitem}[2]{\item[\normalfont{}#1] \hfill \\ #2}
+\begin{description}
+    \descitem{Free format on source code.}{
+        In Fortran 90, you can use either the Fortran 77 input format or
+        free format. If you use free format, the file extension
+        \inlinecode{.f90} should be used for the file name.
+    }
+
+    \descitem{Dynamic allocation and pointers.}{
+        It is now possible to allocate storage dynamically. This enables
+        us to finally get rid of all the ``work'' arrays!
+    }
+
+    \descitem{User defined data types.}{
+        You can now define your own composite data types, similar to
+        \inlinekeyword{struct} in C or \inlinekeyword{record} in Pascal.
+    }
+
+    \descitem{Modules.}{
+        Modules enables you to program in an object oriented style,
+        similar to C++. Modules can also be used to hide global
+        variables, thereby making the Fortran 77 common construct
+        outdated.
+    }
+
+    \descitem{Recursive functions.}{
+        Now a part of the language.
+    }
+
+    \descitem{Built-in array operations.}{
+        Statements like \inlinefortrann{A=0} and \inlinefortrann{C=A+B}
+        are now valid when \inlinefortrann{A} and \inlinefortrann{B} are
+        arrays. There are also built-in functions for matrix operations,
+        e.g., matmul for performing matrix multiplication.
+    }
+
+    \descitem{Operator overloading.}{
+        You can define your own meaning of operators like
+        \inlinefortrann{+} and \inlinefortrann{=} for your own data
+        types (objects).
+    }
+\end{description}
